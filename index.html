@@ -25,7 +25,7 @@
 
         canvas { display: block; position: fixed; top: 0; left: 0; z-index: 1; }
 
-        /* BARRA INFERIOR INTEGRADA CON SOUNDCLOUD */
+        /* BARRA INFERIOR MUY COMPACTA */
         #footer-bar {
             position: fixed;
             bottom: 0;
@@ -33,30 +33,28 @@
             width: 100%;
             z-index: 100;
             background: rgba(0, 0, 0, 0.98);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px);
             border-top: 1px solid var(--glass-border);
             display: flex;
             flex-direction: column;
         }
 
-        /* MARQUEE: DERECHA A IZQUIERDA (RTL) */
         #marquee-container {
             width: 100%;
             overflow: hidden;
-            background: rgba(0, 212, 255, 0.15);
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(0, 212, 255, 0.1);
+            padding: 4px 0;
         }
 
         #marquee-text {
             display: inline-block;
             white-space: nowrap;
-            font-size: 0.95rem;
+            font-size: 0.7rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             color: var(--primary);
-            animation: marquee-rtl 30s linear infinite;
+            animation: marquee-rtl 25s linear infinite;
         }
 
         @keyframes marquee-rtl {
@@ -66,72 +64,57 @@
 
         #audio-row {
             width: 100%;
-            height: 166px;
-            background: #103059;
+            height: 100px; /* Reducido para dejar más espacio al juego */
+            background: #0a1a2f;
             overflow: hidden;
         }
 
-        /* ZONAS LATERALES VISIBLES */
+        /* ZONAS LATERALES */
         .drop-zone {
             position: absolute;
             top: 0;
-            width: 25vw;
-            height: calc(100vh - 210px);
+            width: 20vw;
+            height: calc(100vh - 140px);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 5;
-            font-size: 2.2rem;
+            font-size: 1.3rem;
             font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 6px;
+            letter-spacing: 3px;
             transition: all 0.3s ease;
             pointer-events: none;
-            opacity: 0.6;
+            opacity: 0.3;
         }
 
-        #zone-false { 
-            left: 0; 
-            background: linear-gradient(to right, rgba(255, 51, 102, 0.4), transparent); 
-            color: var(--error);
-            border-right: 3px solid var(--error);
-            text-shadow: 0 0 15px var(--error);
-        }
+        #zone-false { left: 0; background: linear-gradient(to right, rgba(255, 51, 102, 0.15), transparent); color: var(--error); border-right: 2px solid var(--error); }
+        #zone-true { right: 0; background: linear-gradient(to left, rgba(0, 255, 136, 0.15), transparent); color: var(--success); border-left: 2px solid var(--success); }
 
-        #zone-true { 
-            right: 0; 
-            background: linear-gradient(to left, rgba(0, 255, 136, 0.4), transparent); 
-            color: var(--success);
-            border-left: 3px solid var(--success);
-            text-shadow: 0 0 15px var(--success);
-        }
-
-        /* TARJETA REDUCIDA Y ELEVADA */
+        /* TARJETA PEQUEÑA */
         #question-card {
             position: absolute;
-            top: 30%; 
+            top: 28%; /* Más arriba para evitar solapamientos */
             left: 50%;
-            width: 380px; 
+            width: 300px; 
             background: var(--glass-bg);
-            backdrop-filter: blur(30px);
-            padding: 30px; 
-            border-radius: 30px;
-            border: 2px solid var(--glass-border);
-            box-shadow: 0 30px 80px rgba(0,0,0,0.8);
+            backdrop-filter: blur(20px);
+            padding: 15px 20px; 
+            border-radius: 20px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
             z-index: 20;
             text-align: center;
             transform: translate(-50%, -50%);
             cursor: grab;
-            transition: border-color 0.3s, box-shadow 0.3s;
         }
 
-        #question-card:active { cursor: grabbing; }
-        #question-card h1 { font-size: 0.85rem; color: var(--primary); margin-bottom: 12px; letter-spacing: 3px; text-transform: uppercase; }
-        #question-card h2 { font-size: 1.25rem; margin: 0; line-height: 1.4; font-weight: 600; color: #fff; }
+        #question-card h1 { font-size: 0.65rem; color: var(--primary); margin-bottom: 5px; letter-spacing: 2px; text-transform: uppercase; }
+        #question-card h2 { font-size: 1rem; margin: 0; line-height: 1.3; font-weight: 600; color: #fff; }
 
-        .dragging { border-color: var(--primary) !important; box-shadow: 0 0 50px rgba(0, 212, 255, 0.4) !important; }
+        .dragging { border-color: var(--primary) !important; box-shadow: 0 0 25px rgba(0, 212, 255, 0.3) !important; }
 
-        /* OVERLAYS */
+        /* OVERLAY DE INICIO */
         #intro-overlay {
             position: fixed;
             inset: 0;
@@ -141,71 +124,70 @@
             align-items: center;
             justify-content: center;
             text-align: center;
+            padding: 20px;
         }
 
         .intro-box {
-            max-width: 600px;
-            padding: 50px;
+            max-width: 400px;
+            padding: 25px;
             background: var(--glass-bg);
-            border-radius: 40px;
+            border-radius: 20px;
             border: 1px solid var(--glass-border);
-            box-shadow: 0 0 60px rgba(0,0,0,0.7);
         }
 
         .btn-main {
-            padding: 18px 60px;
+            padding: 10px 30px;
             background: var(--primary);
             color: black;
             border: none;
-            border-radius: 50px;
+            border-radius: 25px;
             font-weight: 900;
-            font-size: 1.2rem;
+            font-size: 0.9rem;
             cursor: pointer;
             transition: 0.3s;
-            margin-top: 20px;
+            margin-top: 15px;
             text-transform: uppercase;
         }
 
-        .btn-main:hover { transform: scale(1.05); background: #fff; box-shadow: 0 0 30px var(--primary); }
+        .btn-main:hover { transform: scale(1.05); background: #fff; }
 
         .feedback-pop {
             position: fixed;
-            top: 15%;
+            top: 10%;
             left: 50%;
             transform: translateX(-50%);
-            z-index: 50;
-            font-size: 1.6rem;
+            z-index: 200;
+            font-size: 1.1rem;
             font-weight: 800;
             text-align: center;
             display: none;
-            padding: 20px 50px;
-            border-radius: 100px;
+            padding: 10px 25px;
+            border-radius: 50px;
             background: rgba(0,0,0,0.95);
-            border: 3px solid white;
-            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 2px solid white;
+            animation: popIn 0.3s ease-out;
         }
 
-        @keyframes popIn { from { transform: translateX(-50%) scale(0.5); opacity: 0; } to { transform: translateX(-50%) scale(1); opacity: 1; } }
+        @keyframes popIn { from { transform: translateX(-50%) scale(0.8); opacity: 0; } to { transform: translateX(-50%) scale(1); opacity: 1; } }
 
         #score-tag {
             position: fixed;
-            top: 20px;
-            left: 20px;
+            top: 10px;
+            left: 10px;
             z-index: 100;
-            font-size: 0.85rem;
+            font-size: 0.7rem;
             background: rgba(0,0,0,0.7);
-            padding: 10px 25px;
-            border-radius: 50px;
+            padding: 5px 12px;
+            border-radius: 15px;
             border: 1px solid var(--glass-border);
-            font-weight: bold;
             color: var(--primary);
         }
 
         .reflection-content {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: #ddd;
-            margin: 15px 0;
+            font-size: 0.75rem;
+            line-height: 1.4;
+            color: #ccc;
+            margin: 8px 0;
             text-align: justify;
         }
     </style>
@@ -214,42 +196,34 @@
 
     <div id="score-tag">PUNTOS: 0</div>
 
-    <!-- REPRODUCTOR INFERIOR -->
     <div id="footer-bar">
         <div id="marquee-container">
             <div id="marquee-text">
-                EL DOCENTE COMO DISEÑADOR DE ENTORNOS VIRTUALES DE ENSEÑANZA Y APRENDIZAJE (EVEA) • INTENCIONALIDAD PEDAGÓGICA ANTES QUE HERRAMIENTA • VÍNCULO HUMANO • TRANSFORMACIÓN EN ALTAMAR • APRENDIZAJE ACTIVO • EVALUACIÓN FORMATIVA
+                EL DOCENTE COMO DISEÑADOR DE ENTORNOS VIRTUALES DE ENSEÑANZA Y APRENDIZAJE (EVEA) • INTENCIONALIDAD PEDAGÓGICA ANTES QUE HERRAMIENTA • VÍNCULO HUMANO • TRANSFORMACIÓN EN ALTAMAR • APRENDIZAJE ACTIVO
             </div>
         </div>
         <div id="audio-row">
-            <iframe id="sc-widget" width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
-            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2231655206&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+            <iframe id="sc-widget" width="100%" height="100" scrolling="no" frameborder="no" allow="autoplay" 
+            src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/2231655206&color=%2300d4ff&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"></iframe>
         </div>
     </div>
     
-    <!-- PANTALLA INICIAL EXPLICATIVA -->
     <div id="intro-overlay">
         <div class="intro-box">
-            <h1 style="color: var(--primary); letter-spacing: 4px; text-shadow: 0 0 25px rgba(0,212,255,0.4);">🌊 TRAVESÍA VIRTUAL</h1>
-            <p style="font-size: 1.3rem; line-height: 1.5; font-weight: 600; margin-bottom: 20px;">¡Bienvenidos al juego <b>Travesía Virtual</b>!</p>
-            <p style="font-size: 1.1rem; line-height: 1.5; color: #cbd5e1; margin-bottom: 15px;">La idea es que seas el <b>diseñador de entornos virtuales de enseñanza y aprendizaje (EVEA)</b>.</p>
-            <p style="font-size: 1.05rem; color: var(--primary); font-weight: 700; margin-top: 15px;">⚠️ Activa la música que te ayudará a interpretar las respuestas en esta travesía pedagógica.</p>
-            <p style="font-size: 1rem; color: #94a3b8; margin-top: 15px;">Traslada las tarjetas hacia <b>Verdadero</b> o <b>Falso</b> para validar tu visión como arquitecto virtual.</p>
-            <button class="btn-main" onclick="startJourney()">Comenzar Travesía</button>
+            <h1 style="color: var(--primary); font-size: 1.3rem; margin-bottom: 10px;">🌊 TRAVESÍA VIRTUAL</h1>
+            <p style="font-size: 0.9rem; margin-bottom: 8px;">Diseña tu entorno virtual (EVEA).</p>
+            <p style="font-size: 0.8rem; color: #cbd5e1;">Arrastra las tarjetas para validar tu visión pedagógica.</p>
+            <button class="btn-main" onclick="startJourney()">Comenzar</button>
         </div>
     </div>
 
-    <!-- ZONAS -->
     <div id="zone-false" class="drop-zone">FALSO</div>
     <div id="zone-true" class="drop-zone">VERDADERO</div>
 
-    <!-- TARJETA ARRASTRABLE -->
     <div id="question-card" style="display:none" onmousedown="handleDragStart(event)">
         <h1 id="step-category">CATEGORÍA</h1>
         <h2 id="step-question">Cargando desafío...</h2>
-        <div id="card-footer-hint">
-            <p style="font-size: 0.6rem; opacity: 0.5; margin-top: 25px; letter-spacing: 2px; font-weight: bold; color: var(--primary);">CLIC Y ARRASTRA A UN LATERAL</p>
-        </div>
+        <p style="font-size: 0.5rem; opacity: 0.5; margin-top: 10px; letter-spacing: 1px; font-weight: bold; color: var(--primary);">ARRASTRA A LOS LADOS</p>
     </div>
 
     <div id="feedback-panel" class="feedback-pop"></div>
@@ -257,87 +231,30 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
     <script>
-        // --- CONTROL DE AUDIO ---
         function startMusic() {
             const widget = document.getElementById('sc-widget');
-            const currentSrc = widget.src;
-            widget.src = currentSrc.replace("auto_play=false", "auto_play=true");
+            widget.src = widget.src.replace("auto_play=false", "auto_play=true");
         }
 
-        // --- LÓGICA DEL SIMULADOR ---
         let points = 0;
         let activeStep = 0;
         let isDraggingCard = false;
         let isLock = false;
         
-        let baseCardY = window.innerHeight * 0.3;
+        let baseCardY = window.innerHeight * 0.28;
         let cardCoords = { x: window.innerWidth / 2, y: baseCardY };
         let dragOffset = { x: 0, y: 0 };
         
         const challenges = [
-            {
-                cat: '📌 PLANIFICACIÓN EVEA',
-                q: '¿Virtualizar una propuesta consiste en trasladar contenidos presenciales al aula digital sin redefinir la planificación?',
-                ans: false, shape: 'saturn',
-                win: '✅ ¡Exacto! Requiere un rediseño profundo, coherente e intencionado.',
-                fail: '❌ ¡Incorrecto! Eso es traslación, no diseño pedagógico.'
-            },
-            {
-                cat: '🏗️ ROL DEL DISEÑADOR',
-                q: '¿El docente debe actuar como un "arquitecto del escenario virtual", creando las condiciones didácticas para que el aprendizaje suceda?',
-                ans: true, shape: 'flower',
-                win: '✅ ¡Excelente! Diseñas experiencias y vínculos, no solo contenidos.',
-                fail: '❌ ¡Error! El apunte define este rol central como arquitecto/diseñador.'
-            },
-            {
-                cat: '🎨 PUNTO DE PARTIDA',
-                q: '¿En la planificación de un EVEA, el punto de partida debe ser la herramienta tecnológica antes que la intencionalidad pedagógica?',
-                ans: false, shape: 'heart',
-                win: '✅ ¡Muy bien! La intencionalidad pedagógica siempre es lo primero.',
-                fail: '❌ ¡Incorrecto! La tecnología es el medio, no el fin.'
-            },
-            {
-                cat: '⚙️ DINÁMICA',
-                q: '¿Las instancias asincrónicas ofrecen tiempos flexibles para la reflexión y la construcción individual o colaborativa del conocimiento?',
-                ans: true, shape: 'saturn',
-                win: '✅ ¡Exacto! La asincronía es clave para la profundidad cognitiva.',
-                fail: '❌ ¡Falso! La asincronía es vital para la flexibilidad y reflexión.'
-            },
-            {
-                cat: '🗣️ INTERACCIÓN',
-                q: '¿En la educación en línea, el aprendizaje se propicia principalmente a través de la mera exposición de contenidos?',
-                ans: false, shape: 'flower',
-                win: '✅ ¡Excelente! Son las actividades y las interacciones las que generan aprendizaje.',
-                fail: '❌ ¡Error! La simple exposición no garantiza el aprendizaje activo.'
-            },
-            {
-                cat: '🛠️ PRODUCCIÓN',
-                q: '¿Es fundamental fomentar la producción de contenidos originales (videos, podcasts) para evidenciar una comprensión profunda?',
-                ans: true, shape: 'heart',
-                win: '✅ ¡Correcto! La creación original supera a las prácticas reproductivas.',
-                fail: '❌ ¡Falso! La producción original es un pilar del aprendizaje activo.'
-            },
-            {
-                cat: '📊 EVALUACIÓN',
-                q: '¿Las herramientas digitales permiten transformar la evaluación en un proceso formativo basado en las "huellas" del recorrido?',
-                ans: true, shape: 'saturn',
-                win: '✅ ¡Exacto! Permite analizar procesos cognitivos y no solo resultados.',
-                fail: '❌ ¡Falso! Es una de las mayores potencias de los EVEA.'
-            },
-            {
-                cat: '📢 RETROALIMENTACIÓN',
-                q: '¿La retroalimentación en entornos virtuales solo debe centrarse en señalar errores para ser efectiva?',
-                ans: false, shape: 'flower',
-                win: '✅ ¡Bien! Debe describir logros y sugerir caminos de mejora.',
-                fail: '❌ ¡Incorrecto! Debe ser un diálogo pedagógico orientador.'
-            },
-            {
-                cat: '⚖️ ÉTICA Y ACCESO',
-                q: '¿El Diseño Universal para el Aprendizaje (DUA) busca garantizar la inclusión mediante currículos flexibles y personalizables?',
-                ans: true, shape: 'heart',
-                win: '✅ ¡Correcto! Es una perspectiva ética indispensable para la diversidad.',
-                fail: '❌ ¡Incorrecto! El DUA es clave para la accesibilidad e inclusión.'
-            }
+            { cat: '📌 PLANIFICACIÓN', q: '¿Virtualizar consiste en trasladar contenidos presenciales sin redefinir la planificación?', ans: false, shape: 'saturn', win: '✅ ¡Exacto! Requiere rediseño.', fail: '❌ ¡Incorrecto!' },
+            { cat: '🏗️ ROL', q: '¿El docente debe ser un "arquitecto del escenario virtual" creando condiciones didácticas?', ans: true, shape: 'flower', win: '✅ ¡Excelente! Diseñas experiencias.', fail: '❌ ¡Error!' },
+            { cat: '🎨 PARTIDA', q: '¿El punto de partida debe ser la tecnología antes que la pedagogía?', ans: false, shape: 'heart', win: '✅ ¡Bien! Pedagogía primero.', fail: '❌ ¡No! Tecnología es medio.' },
+            { cat: '⚙️ DINÁMICA', q: '¿Las instancias asincrónicas ofrecen tiempos flexibles para la reflexión?', ans: true, shape: 'saturn', win: '✅ ¡Exacto! Vital para profundidad.', fail: '❌ ¡Falso!' },
+            { cat: '🗣️ INTERACCIÓN', q: '¿El aprendizaje se propicia principalmente por la mera exposición?', ans: false, shape: 'flower', win: '✅ ¡Bien! Actividades mandan.', fail: '❌ ¡Error!' },
+            { cat: '🛠️ PRODUCCIÓN', q: '¿Es fundamental fomentar la producción de contenidos originales?', ans: true, shape: 'heart', win: '✅ ¡Correcto! Evidencia comprensión.', fail: '❌ ¡Falso!' },
+            { cat: '📊 EVALUACIÓN', q: '¿Las herramientas digitales permiten transformar la evaluación en formativa?', ans: true, shape: 'saturn', win: '✅ ¡Exacto! Analiza procesos.', fail: '❌ ¡Falso!' },
+            { cat: '📢 FEEDBACK', q: '¿La retroalimentación virtual solo debe señalar errores?', ans: false, shape: 'flower', win: '✅ ¡Bien! Debe ser diálogo.', fail: '❌ ¡Incorrecto!' },
+            { cat: '⚖️ INCLUSIÓN', q: '¿El DUA busca garantizar inclusión mediante currículos flexibles?', ans: true, shape: 'heart', win: '✅ ¡Correcto! Ética indispensable.', fail: '❌ ¡Error!' }
         ];
 
         const cardElement = document.getElementById('question-card');
@@ -368,7 +285,6 @@
         }
 
         function refreshCardUI() {
-            if (isNaN(cardCoords.x) || isNaN(cardCoords.y)) return;
             cardElement.style.left = `${cardCoords.x}px`;
             cardElement.style.top = `${cardCoords.y}px`;
         }
@@ -387,10 +303,9 @@
             cardCoords.y = e.clientY - dragOffset.y;
             refreshCardUI();
 
-            const w = window.innerWidth;
-            const threshold = w * 0.25;
-            document.getElementById('zone-false').style.opacity = cardCoords.x < threshold ? '1' : '0.4';
-            document.getElementById('zone-true').style.opacity = cardCoords.x > w - threshold ? '1' : '0.4';
+            const threshold = window.innerWidth * 0.2;
+            document.getElementById('zone-false').style.opacity = cardCoords.x < threshold ? '1' : '0.3';
+            document.getElementById('zone-true').style.opacity = cardCoords.x > window.innerWidth - threshold ? '1' : '0.3';
         });
 
         window.addEventListener('mouseup', () => {
@@ -398,13 +313,11 @@
             isDraggingCard = false;
             cardElement.classList.remove('dragging');
 
-            const w = window.innerWidth;
-            const threshold = w * 0.25;
-
+            const threshold = window.innerWidth * 0.2;
             if (cardCoords.x < threshold) resolveChoice(false);
-            else if (cardCoords.x > w - threshold) resolveChoice(true);
+            else if (cardCoords.x > window.innerWidth - threshold) resolveChoice(true);
             else {
-                cardCoords.x = w / 2;
+                cardCoords.x = window.innerWidth / 2;
                 cardCoords.y = baseCardY;
                 refreshCardUI();
             }
@@ -412,15 +325,14 @@
 
         function resolveChoice(pick) {
             isLock = true;
-            const data = challenges[activeStep];
-            const isCorrect = pick === data.ans;
+            const isCorrect = pick === challenges[activeStep].ans;
             if (isCorrect) points += 10;
             document.getElementById('score-tag').innerText = `PUNTOS: ${points}`;
 
-            feedbackPanel.innerText = isCorrect ? data.win : data.fail;
+            feedbackPanel.innerText = isCorrect ? challenges[activeStep].win : challenges[activeStep].fail;
             feedbackPanel.style.display = 'block';
-            feedbackPanel.style.borderColor = isCorrect ? 'var(--success)' : 'var(--error)';
             feedbackPanel.style.color = isCorrect ? 'var(--success)' : 'var(--error)';
+            feedbackPanel.style.borderColor = isCorrect ? 'var(--success)' : 'var(--error)';
             
             particleMaterial.color.set(isCorrect ? 0x00ff88 : 0xff3366);
 
@@ -428,38 +340,31 @@
                 feedbackPanel.style.display = 'none';
                 activeStep++;
                 loadStep();
-            }, 3000);
+            }, 2000);
         }
 
         function showReflection() {
-            // Desactivamos el drag para la pantalla final
             isLock = true;
-            cardElement.onmousedown = null; 
+            cardElement.onmousedown = null;
             cardElement.style.cursor = 'default';
-            // Subimos un poco el z-index para asegurar visibilidad total
-            cardElement.style.zIndex = "200";
 
             cardElement.innerHTML = `
-                <h1 style="color:var(--success)">⚓ MUCHAS GRACIAS</h1>
-                <p style="font-weight:bold; margin-top:5px; font-size:0.9rem;">¡ROL DE DISEÑADOR EVEA VALIDADO!</p>
+                <h1 style="color:var(--success); font-size: 0.9rem;">⚓ TRAVESÍA FINALIZADA</h1>
                 <div class="reflection-content">
-                    <b>Reflexión Final:</b> Como diseñador de <b>EVEA</b>, has comprendido que la tecnología es un medio pedagógico para propuestas coherentes. Redefinir la práctica docente implica entender que el entorno digital es un aula expandida donde la planificación debe ser flexible y situada. 
-                    Un verdadero arquitecto diseña experiencias de producción original y sostiene el vínculo humano.
+                    <b>Resumen:</b> Has validado tu rol como arquitecto virtual. Entender que la pedagogía guía a la tecnología es el timón de tu práctica. Diseñar experiencias reales transforma el aprendizaje en el mar digital.
                 </div>
-                <button class="btn-main" onclick="location.reload()" style="position: relative; z-index: 210; font-size:1.1rem; padding:15px 40px; margin-top:10px;">Comenzar de vuelta</button>
+                <button class="btn-main" onclick="location.reload()" style="margin-top: 5px; padding: 8px 20px;">Comenzar de vuelta</button>
             `;
-
-            // Centramos la tarjeta un poco más arriba para que el botón no sea tapado por el footer
+            
             cardCoords.x = window.innerWidth / 2;
-            cardCoords.y = window.innerHeight * 0.32; 
+            cardCoords.y = window.innerHeight * 0.3;
             refreshCardUI();
-
             currentShapeMode = 'fireworks';
             initTargetPositions();
         }
 
         // --- MOTOR 3D ---
-        const PART_TOTAL = 3000;
+        const PART_TOTAL = 2000;
         let currentShapeMode = 'saturn';
         const scene3d = new THREE.Scene();
         const camera3d = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -471,14 +376,10 @@
         const particleGeo = new THREE.BufferGeometry();
         const posBuffer = new Float32Array(PART_TOTAL * 3);
         const targetBuffer = new Float32Array(PART_TOTAL * 3);
-        
-        for(let i=0; i<PART_TOTAL*3; i++) {
-            posBuffer[i] = (Math.random()-0.5)*150;
-            targetBuffer[i] = 0.0;
-        }
+        for(let i=0; i<PART_TOTAL*3; i++) { posBuffer[i] = (Math.random()-0.5)*150; }
         particleGeo.setAttribute('position', new THREE.BufferAttribute(posBuffer, 3));
 
-        const particleMaterial = new THREE.PointsMaterial({ size: 0.5, blending: THREE.AdditiveBlending, transparent: true, color: 0x00d4ff, depthWrite: false });
+        const particleMaterial = new THREE.PointsMaterial({ size: 0.4, blending: THREE.AdditiveBlending, transparent: true, color: 0x00d4ff, depthWrite: false });
         const particlePoints = new THREE.Points(particleGeo, particleMaterial);
         scene3d.add(particlePoints);
 
@@ -488,7 +389,7 @@
                 let x = 0, y = 0, z = 0;
                 if (currentShapeMode === 'heart') {
                     const t = Math.PI * (Math.random() - 0.5) * 2;
-                    x = 16 * Math.pow(Math.sin(t), 3) * 0.8; y = (13*Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t)) * 0.8; z = (Math.random()-0.5)*5;
+                    x = 16 * Math.pow(Math.sin(t), 3) * 0.6; y = (13*Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t)) * 0.6; z = (Math.random()-0.5)*5;
                 } else if (currentShapeMode === 'saturn') {
                     const angle = Math.random() * Math.PI * 2;
                     if (i < PART_TOTAL * 0.6) {
@@ -499,33 +400,27 @@
                         const r = 16 + Math.random() * 6; x = r * Math.cos(angle); y = (Math.random()-0.5)*2; z = r * Math.sin(angle);
                     }
                 } else if (currentShapeMode === 'flower') {
-                    const angle = i * 0.15; const r = 0.25 * Math.sqrt(i) * 1.5;
+                    const angle = i * 0.15; const r = 0.2 * Math.sqrt(i) * 1.5;
                     x = r * Math.cos(angle); y = r * Math.sin(angle); z = Math.sin(r * 0.4) * 8;
                 } else {
-                    const r = Math.pow(Math.random(), 1/3) * 35; const theta = Math.random() * Math.PI * 2; const phi = Math.random() * Math.PI;
+                    const r = Math.pow(Math.random(), 1/3) * 30; const theta = Math.random() * Math.PI * 2; const phi = Math.random() * Math.PI;
                     x = r * Math.sin(phi) * Math.cos(theta); y = r * Math.sin(phi) * Math.sin(theta); z = r * Math.cos(phi);
                 }
-                targetBuffer[i3] = isNaN(x) ? 0 : x;
-                targetBuffer[i3+1] = isNaN(y) ? 0 : y;
-                targetBuffer[i3+2] = isNaN(z) ? 0 : z;
+                targetBuffer[i3] = x; targetBuffer[i3+1] = y; targetBuffer[i3+2] = z;
             }
         }
 
         function animateFrame() {
             requestAnimationFrame(animateFrame);
             const livePos = particleGeo.attributes.position.array;
-            
-            const cX = isNaN(cardCoords.x) ? window.innerWidth/2 : cardCoords.x;
-            const cY = isNaN(cardCoords.y) ? window.innerHeight/2 : cardCoords.y;
-
-            const driftX = (0.5 - cX / window.innerWidth) * 45;
-            const driftY = (0.5 - cY / window.innerHeight) * 35;
+            const driftX = (0.5 - cardCoords.x / window.innerWidth) * 35;
+            const driftY = (0.5 - cardCoords.y / window.innerHeight) * 25;
 
             for (let i = 0; i < PART_TOTAL; i++) {
                 const i3 = i * 3;
-                livePos[i3] += (targetBuffer[i3] + driftX - livePos[i3]) * 0.05;
-                livePos[i3+1] += (targetBuffer[i3+1] + driftY - livePos[i3+1]) * 0.05;
-                livePos[i3+2] += (targetBuffer[i3+2] - livePos[i3+2]) * 0.05;
+                livePos[i3] += (targetBuffer[i3] + driftX - livePos[i3]) * 0.07;
+                livePos[i3+1] += (targetBuffer[i3+1] + driftY - livePos[i3+1]) * 0.07;
+                livePos[i3+2] += (targetBuffer[i3+2] - livePos[i3+2]) * 0.07;
             }
             particleGeo.attributes.position.needsUpdate = true;
             particlePoints.rotation.y += 0.002;
@@ -539,12 +434,8 @@
             camera3d.aspect = window.innerWidth / window.innerHeight;
             camera3d.updateProjectionMatrix();
             renderer3d.setSize(window.innerWidth, window.innerHeight);
-            baseCardY = window.innerHeight * 0.3;
-            if(!isDraggingCard) {
-                cardCoords.x = window.innerWidth / 2;
-                cardCoords.y = baseCardY;
-                refreshCardUI();
-            }
+            baseCardY = window.innerHeight * 0.28;
+            if(!isDraggingCard) { cardCoords.x = window.innerWidth / 2; cardCoords.y = baseCardY; refreshCardUI(); }
         });
     </script>
 </body>
