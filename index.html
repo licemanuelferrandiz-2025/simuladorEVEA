@@ -56,7 +56,6 @@
             text-transform: uppercase;
             letter-spacing: 3px;
             color: var(--primary);
-            /* Animación de Derecha a Izquierda */
             animation: marquee-rtl 30s linear infinite;
         }
 
@@ -163,7 +162,7 @@
             font-size: 1.2rem;
             cursor: pointer;
             transition: 0.3s;
-            margin-top: 30px;
+            margin-top: 20px;
             text-transform: uppercase;
         }
 
@@ -203,10 +202,10 @@
         }
 
         .reflection-content {
-            font-size: 0.95rem;
-            line-height: 1.7;
+            font-size: 0.9rem;
+            line-height: 1.6;
             color: #ddd;
-            margin: 20px 0;
+            margin: 15px 0;
             text-align: justify;
         }
     </style>
@@ -248,7 +247,9 @@
     <div id="question-card" style="display:none" onmousedown="handleDragStart(event)">
         <h1 id="step-category">CATEGORÍA</h1>
         <h2 id="step-question">Cargando desafío...</h2>
-        <p style="font-size: 0.6rem; opacity: 0.5; margin-top: 25px; letter-spacing: 2px; font-weight: bold; color: var(--primary);">CLIC Y ARRASTRA A UN LATERAL</p>
+        <div id="card-footer-hint">
+            <p style="font-size: 0.6rem; opacity: 0.5; margin-top: 25px; letter-spacing: 2px; font-weight: bold; color: var(--primary);">CLIC Y ARRASTRA A UN LATERAL</p>
+        </div>
     </div>
 
     <div id="feedback-panel" class="feedback-pop"></div>
@@ -431,18 +432,28 @@
         }
 
         function showReflection() {
+            // Desactivamos el drag para la pantalla final
+            isLock = true;
+            cardElement.onmousedown = null; 
+            cardElement.style.cursor = 'default';
+            // Subimos un poco el z-index para asegurar visibilidad total
+            cardElement.style.zIndex = "200";
+
             cardElement.innerHTML = `
                 <h1 style="color:var(--success)">⚓ MUCHAS GRACIAS</h1>
                 <p style="font-weight:bold; margin-top:5px; font-size:0.9rem;">¡ROL DE DISEÑADOR EVEA VALIDADO!</p>
                 <div class="reflection-content">
-                    <b>Reflexión Final:</b> Como diseñador de <b>EVEA</b>, has comprendido que la tecnología es un medio pedagógico para propuestas coherentes. Redefinir la práctica docente en el mar de la virtualidad implica entender que el entorno digital es un aula expandida donde la planificación debe ser flexible y situada. 
-                    Un verdadero arquitecto no solo selecciona herramientas, sino que diseña experiencias de producción original, sostiene el vínculo humano y promueve una evaluación que potencie los procesos de aprendizaje.
+                    <b>Reflexión Final:</b> Como diseñador de <b>EVEA</b>, has comprendido que la tecnología es un medio pedagógico para propuestas coherentes. Redefinir la práctica docente implica entender que el entorno digital es un aula expandida donde la planificación debe ser flexible y situada. 
+                    Un verdadero arquitecto diseña experiencias de producción original y sostiene el vínculo humano.
                 </div>
-                <button class="btn-main" onclick="location.reload()" style="font-size:1.1rem; padding:15px 40px; margin-top:10px;">Comenzar de vuelta</button>
+                <button class="btn-main" onclick="location.reload()" style="position: relative; z-index: 210; font-size:1.1rem; padding:15px 40px; margin-top:10px;">Comenzar de vuelta</button>
             `;
+
+            // Centramos la tarjeta un poco más arriba para que el botón no sea tapado por el footer
             cardCoords.x = window.innerWidth / 2;
-            cardCoords.y = window.innerHeight * 0.35;
+            cardCoords.y = window.innerHeight * 0.32; 
             refreshCardUI();
+
             currentShapeMode = 'fireworks';
             initTargetPositions();
         }
